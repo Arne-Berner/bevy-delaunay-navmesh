@@ -1,0 +1,16 @@
+[package]
+name = "bevyplayground"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = "0.11.2"
+constrained_denaulay_triangulation = { path = "../cdt/constrained_denaulay_triangulation" }
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.dev]
+opt-level = 1
