@@ -23,11 +23,15 @@ fn setup(mut res: ResMut<Triangles>) {
   input_points.push(Vector::new(-6., -4.)*10.); //
   input_points.push(Vector::new(5., -4.)*10.); //
     let mut holes: Vec<Vec<Vector>> = vec![];
-    let mut hole = Vec::<Vector>::new();
-    hole.push(Vector::new(-6., 6.)*10.);
-    hole.push(Vector::new(6., 6.)*10.);
-    hole.push(Vector::new(0., -2.)*10.);
-    holes.push(hole);
+    let mut minihole = Vec::<Vector>::new();
+    minihole.push(Vector::new(-0.1 ,6.9)*10.);
+    minihole.push(Vector::new(0.1, 6.9)*10.);
+    minihole.push(Vector::new(0., 7.1)*10.);
+    let mut bighole = Vec::<Vector>::new();
+    bighole.push(Vector::new(-6., 6.)*10.);
+    bighole.push(Vector::new(6., 6.)*10.);
+    bighole.push(Vector::new(0., -2.)*10.);
+    holes.push(bighole);
     let input_hole = Some(&mut holes);
     //let input_hole = None;
 
