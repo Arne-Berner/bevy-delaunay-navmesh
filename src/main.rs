@@ -1,9 +1,9 @@
-use bevy::{core_pipeline::clear_color::ClearColorConfig, gizmos, prelude::*};
+use bevy::{core_pipeline::clear_color::ClearColorConfig, prelude::*};
 use constrained_denaulay_triangulation::{triangulate, Triangle, Vector};
 
 fn main() {
     App::new()
-        .add_plugins((DefaultPlugins))
+        .add_plugins(DefaultPlugins)
         .insert_resource(Triangles(vec![]))
         .add_systems(Startup, (setup, gizmo_setup))
         .add_systems(Update, system)
@@ -24,9 +24,10 @@ fn setup(mut res: ResMut<Triangles>) {
   input_points.push(Vector::new(5., -4.)*10.); //
     let mut holes: Vec<Vec<Vector>> = vec![];
     let mut minihole = Vec::<Vector>::new();
-    minihole.push(Vector::new(-0.1 ,6.9)*10.);
-    minihole.push(Vector::new(0.1, 6.9)*10.);
-    minihole.push(Vector::new(0., 7.1)*10.);
+    minihole.push(Vector::new(-0.5 ,6.5)*10.);
+    minihole.push(Vector::new(0.5, 6.5)*10.);
+    minihole.push(Vector::new(0., 7.5)*10.);
+    holes.push(minihole);
     let mut bighole = Vec::<Vector>::new();
     bighole.push(Vector::new(-6., 6.)*10.);
     bighole.push(Vector::new(6., 6.)*10.);
@@ -42,7 +43,7 @@ fn setup(mut res: ResMut<Triangles>) {
     println!("{}",res.0.len());
 
 }
-fn system(mut res: Res<Triangles>, mut gizmos: Gizmos) {
+fn system(res: Res<Triangles>, mut gizmos: Gizmos) {
     // Triangle
     for triangle in &res.0 {
         gizmos.linestrip_gradient_2d([
